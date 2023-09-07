@@ -1,0 +1,78 @@
+
+ATTENTION : Installer les trucs requis pour les TP sur notre PC avant les séances de TP
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+INTRODUCTION
+
+Paterne de découverte et modeles
+    - Valid: Se focus sur certaines données avec une certaine certitude
+    - New: Pas obvious pour les experts
+    - Useful
+    - Understandable: Un huain doit être capable de comprendre le paterne
+
+Tâche en data mining : 
+    - Descriptive methods
+        - Trouver un paterne interprétable par un humain qui décrit les données
+        - Example: statistics, clustering, association rules
+    - Predictive methods:
+        - Construire un model pour prédire quelques future ou inconnue attribut
+        - Example: classification, recommender system
+
+
+Plusieurs types de données : 
+    - Transactional data
+    - Textes
+    - Graphes
+    - Flux de données
+
+
+Si les données sont random
+    - On vas trouver un patern...
+
+Comment vérifier la qualité des patern / méthodes
+    - Tests statistique
+    - Test set (pas utiliser pour construire paterne/model)
+
+
+Bonferroni Principle
+    - Trouver un terroriste
+        - Des personnes non lié qui on au moins 2 fois resté dans le meme hotel au meme jour
+        - Hypothèse : 
+            - 10^7 personnes
+            - 1000 jours
+            - Chaque personne reste 1 jour sur 100 a l'hotel (random)
+            - 10000 hotels
+        - Si tout le monde est random : combien de pairs de personnes on peut trouver ?
+            - 5000 pair des personnes qui sont reste le meme jour dans le meme hotel au moins 2 fois
+            - Pas une bonne méthode pour trouver un terroriste
+    - Vérifier si un modèle est significatif :
+        - Se produit-il dans des données aléatoires ?
+            - calculer son espérance dans des données aléatoires
+            - générer des données aléatoires et rechercher le modèle
+        - Si un motif apparaît dans les données réelles et est rare dans les données aléatoires (se produit 1 % du temps)
+            ⇒ probablement significatif
+        - Si un motif apparaît dans les données réelles et également dans les données aléatoires (5000 occurrences dans des données aléatoires)
+            ⇒ le motif n'est probablement pas significatif
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+MAP REDUCE COMPUTATION MODEL
+
+Problem
+    - Données trop large pour rentrer dans la mémoire d'un seul PC
+    - Disques sont lent
+        - Google exemple : 50 milliard web page * 20KB = 1000 TB
+        - HDD lent
+        - 4 mois pour lire le contenue d'un Disques
+
+Goal
+    - Utiliser plusieur nodes (PC)
+        - Communication entre les nodes est lente
+            - Causé par lenteur HDD et réseau (ping)
+        - Échec nodes / réseau
+            - Un node échoue apres 3 ans 
+            - Google a 2M serveur en 2013
+            - 2000 échec par joue
+        - Le parallélisme est difficil (algorithme parralele)
+
+
+        
