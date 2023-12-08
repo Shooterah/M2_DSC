@@ -1,7 +1,5 @@
 ## Question 1
 
-### Définition des Shingles
-Un "shingle" est une séquence continue de caractères (ou de mots) dans un document. Ici, nous utilisons des 3-shingles, qui sont des séquences de 3 caractères consécutifs.
 
 ### Calcul des Ensembles de Shingles pour Chaque Document
 
@@ -34,12 +32,6 @@ La similarité de Jaccard entre doc1 et doc2 est donc de 0.375.
 
 ## Question 2
 
-La question demande de calculer le nombre total de k-shingles possibles en considérant un alphabet de 26 lettres plus le caractère espace, soit 27 caractères au total.
-
-### Formulation du Problème
-
-Un k-shingle est une séquence de k caractères. Chaque caractère peut être l'un des 27 (26 lettres + espace) disponibles. Le nombre total de k-shingles différents est donc le nombre de façons de choisir une séquence de k caractères parmi ces 27, où chaque caractère peut être choisi indépendamment des autres.
-
 ### Calcul
 
 Le nombre total de k-shingles différents est donné par :
@@ -58,12 +50,6 @@ où \( k \) est la longueur du shingle.
 Ainsi, le nombre total de k-shingles différents possibles avec un alphabet de 27 caractères est \( 27^k \).
 
 ## Question 3
-
-La question porte sur le nombre maximum de k-shingles différents dans un document de n caractères.
-
-### Formulation du Problème
-
-Un k-shingle est une séquence de k caractères consécutifs. Dans un document de n caractères, le nombre maximum de k-shingles différents dépend de la longueur du document et de la taille du shingle.
 
 ### Calcul
 
@@ -89,7 +75,6 @@ En résumé, dans un document de n caractères, le nombre maximum de k-shingles 
 
 ## Question 4
 
-Cette question concerne le calcul de la similarité de Jaccard entre deux documents, D et D′, en utilisant des shingles de mots. D′ est le même que D, sauf que la dernière phrase de D a été déplacée au début.
 
 ### Hypothèses et Contexte
 
@@ -137,8 +122,6 @@ La similarité de Jaccard entre D et D′ dépend de la longueur du document (n)
 
 
 ## Question 5
-
-Cette question concerne le calcul de la similarité de Jaccard entre les ensembles (ou documents) A, B et C à partir d'une matrice donnée.
 
 ### Matrice Donnée
 
@@ -192,9 +175,7 @@ Les similarités de Jaccard calculées sont :
 - Jaccard(B, C) = 3/5
 
 
-## Question 6
-
-La question concerne le calcul du MinHash de A et B en utilisant les fonctions de hachage \( h_1(x) = x \) et \( h_2(x) = (3x + 1) \mod 7 \), en appliquant l'algorithme de MinHash ligne par ligne (optimisé).
+## Question 6 [Faux, a refaire (tableau bon mais calcul faux, completer tableau)]
 
 ### Fonctions de Hachage
 
@@ -253,19 +234,17 @@ Les valeurs MinHash finales pour A et B selon les fonctions \( h_1 \) et \( h_2 
 
 ## Question 7
 
-Cette question demande de calculer le MinHash de A, B et C pour les trois permutations définies par les fonctions de hachage \( h_1(x) = x \), \( h_2(x) = (3x + 1) \mod 7 \) et \( h_3(x) = (5x + 3) \mod 7 \), et ensuite d'inférer les similarités de Jaccard à partir des MinHash.
-
 ### Matrice Donnée
 
-|   | A | B | C |
-|---|---|---|---|
-| 0 | 0 | 1 | 0 |
-| 1 | 0 | 1 | 1 |
-| 2 | 1 | 0 | 1 |
-| 3 | 0 | 0 | 0 |
-| 4 | 1 | 0 | 1 |
-| 5 | 1 | 1 | 1 |
-| 6 | 1 | 0 | 1 |
+|   | A | B | C | h1 | h2 | h3 |
+|---|---|---|---|----|----|----|
+| 0 | 0 | 1 | 0 | 0  | 1  | 3  |
+| 1 | 0 | 1 | 1 | 1  | 4  | 1  |
+| 2 | 1 | 0 | 1 | 2  | 0  | 6  |
+| 3 | 0 | 0 | 0 | 3  | 3  | 4  |
+| 4 | 1 | 0 | 1 | 4  | 6  | 2  |
+| 5 | 1 | 1 | 1 | 5  | 2  | 0  |
+| 6 | 1 | 0 | 1 | 6  | 5  | 5  |
 
 
 ### Calcul du MinHash pour Chaque Document
@@ -280,15 +259,15 @@ On suit l'algorithme de MinHash pour chaque fonction de hachage. On initialise l
 
 #### Avec \( $h_2(x) = (3x + 1) \mod 7$ \)
 
-- MinHash(A) = \( h_2(2) = 0 \)
-- MinHash(B) = \( h_2(0) = 1 \)
-- MinHash(C) = \( h_2(1) = 4 \)
+- MinHash(A) = \( 0 \)
+- MinHash(B) = \( 1 \)
+- MinHash(C) = \( 0 \)
 
 #### Avec \( $h_3(x) = (5x + 3) \mod 7$ \)
 
-- MinHash(A) = \( h_3(2) = 4 \)
-- MinHash(B) = \( h_3(0) = 3 \)
-- MinHash(C) = \( h_3(1) = 1 \)
+- MinHash(A) = \( 0 \)
+- MinHash(B) = \( 0 \)
+- MinHash(C) = \( 0 \)
 
 ### Inférer les Similarités de Jaccard à Partir des MinHash
 
@@ -317,8 +296,6 @@ Les similarités de Jaccard inférées à partir des MinHash sont :
 Ces estimations sont basées sur les résultats des MinHash et peuvent différer de la similarité de Jaccard réelle calculée directement à partir des ensembles.
 
 ## Question 8
-
-La question demande de démontrer que si la similarité de Jaccard entre deux ensembles X et Y est 0, alors le MinHash de X et Y sera toujours différent, quelle que soit la permutation utilisée.
 
 ### Similarité de Jaccard et MinHash
 
@@ -385,3 +362,75 @@ La question demande de démontrer que la distance de Jaccard, définie comme $di
 ### Conclusion
 
 La distance de Jaccard $distjac(A, B) = 1 - Simjac(A, B)$ satisfait les quatre propriétés requises d'une distance : elle est positive, symétrique, satisfait l'identité des indiscernables et respecte l'inégalité triangulaire. Par conséquent, elle peut être considérée comme une mesure de distance valide.
+
+
+
+## Question 10
+
+### Signature : 
+
+|   | A | B | C |
+|---|---|---|---|
+| h1 | 2 | 0 | 1 |
+| h2 | 0 | 1 | 0 |
+| h3 | 0 | 0 | 0 |
+
+We have : 
+
+("A", 2), ("A", 4), ("A", 5), ("A", 6), ("B", 0), ("B", 1), ("B", 5), ("C", 1), ("C", 2)..... = input I
+
+VVVVVVVVVVVVVVVVVVVVV Map & Reduce
+
+("A", (1,2)), ("B", (1,0)), ("C", (1,1)), ("A", (2,0)), ("B", (2,1)), ("C", (2,0))...
+
+### With only one hash fonction h : 
+```
+hU = I.map(lambda x: (x[0], h(x[1]))) 
+   ==> ("A", h(2)), ("A", (h(4)), ("A", h(5)), ("A", h(6)), ("B", h(0)), ("B", h(1)), ("B", h(5)), ("C", h(1)), ("C", h(2)).....
+```
+```
+R = hI.reduceByKey(min) 
+  ==> ("A", min(h(2), h(4), h(5), h(6))), ("B", min(h(0), h(1), h(5))), ("C", min(h(1), h(2)))....
+```
+
+### With 3 hash functions h1, h2, h3 :
+```
+def applyHash(x):
+    set, value = x
+    return [((set, i), H[i](value)) for i in range(len(H])]
+
+hU = I.flatMap(applyHash)
+   ==> ("A", h1(2)), ("A", h2(2)), ("A", h3(2)), ("A", h1(4)), ("A", h2(4)), ("A", h3(4)), ("A", h1(5)), ("A", h2(5)), ("A", h3(5)), ("A", h1(6)), ("A", h2(6)), ("A", h3(6)), ("B", h1(0)), ("B", h2(0)), ("B", h3(0)), ("B", h1(1)), ("B", h2(1)), ("B", h3(1)), ("B", h1(5)), ("B", h2(5)), ("B", h3(5)), ("C", h1(1)), ("C", h2(1)), ("C", h3(1)), ("C", h1(2)), ("C", h2(2)), ("C", h3(2)).....
+```
+```
+iR = Hu.reduceByKey(min)
+  ==> ("A", min(h1(2), h2(2), h3(2), h1(4), h2(4), h3(4), h1(5), h2(5), h3(5), h1(6), h2(6), h3(6))), ("B", min(h1(0), h2(0), h3(0), h1(1), h2(1), h3(1), h1(5), h2(5), h3(5))), ("C", min(h1(1), h2(1), h3(1), h1(2), h2(2), h3(2)))....
+```
+```
+def ref(x):
+    return (x[0][0], (x[0][1], x[1]))
+
+Result = iR.map(ref)
+```
+
+## Question 11
+
+RDD of (Set, (i, Minhash hi (Set))) 
+
+```
+def f(x):
+    (Set, (i, M)) = x
+    return ((Set, int(i/r)), (i % r, M))
+
+R = Result.map(f).groupByKey()
+
+def buildSubSign(x):
+    ((Set, band), list) = x
+    subSign = [0] * len(list)
+    for (pos, V) in list:
+        subSign[pos] = V
+    return ((band, subSign), Set)
+
+list_of_candidate = R.map(buildSubSign).groupByKey()
+```
+
